@@ -1,28 +1,21 @@
 class Solution {
 public:
-    bool check(vector<int>& nums) {
-        int size = nums.size();
-
-        // Create a sorted copy of the array
-        vector<int> sortedNums = nums;
-        sort(sortedNums.begin(), sortedNums.end());
-
-        // Compare the original array with the sorted array, considering all
-        // possible rotations
-        for (int rotationOffset = 0; rotationOffset < size; ++rotationOffset) {
-            bool isMatch = true;
-            for (int index = 0; index < size; ++index) {
-                if (nums[(rotationOffset + index) % size] !=
-                    sortedNums[index]) {
-                    isMatch = false;
-                    break;
-                }
-            }
-            if (isMatch) {
-                return true;
-            }
+bool check(vector<int>& arr) {
+    int n = arr.size();
+    if (arr[0]<arr[n-1]){ // Checking already sorted arrays
+        for(int i = 0; i < n-1; i++){
+            if(arr[i]>arr[i+1])
+                return false;
         }
-
-        return false;
+        return true;
     }
+    bool endPoint = false;
+    for(int i = 0;i<n;i++){
+        if((i != n-1) && (arr[i]>arr[i+1])){
+            if (endPoint == false)  endPoint = true;
+            else return false;
+        }
+    }
+    return true;
+}
 };
