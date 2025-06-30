@@ -6,9 +6,9 @@ public:
                 mpp[i]++;
             
             int maxSequence = 0;
-            for (auto &&i : mpp)
-                if(mpp.count(i.first+1))
-                    maxSequence = max(mpp[i.first] + mpp[i.first+1], maxSequence);
-            return maxSequence;  
+            for (auto& [key, val] : mpp)
+                if(mpp.count(key+1))
+                    maxSequence = max(val + mpp[key+1], maxSequence);
+            return maxSequence;
         }
 };
